@@ -27,21 +27,41 @@ public class ClearChatCommand extends Command {
     )
     public void command(Execution execution) {
         if (execution.argsCount() == 0) {
-            if (!execution.isPlayer()) {
-                Bukkit.getOnlinePlayers().forEach(player -> {
-                    if (!player.hasPermission("engine.commands.clearchat.bypass")) {
-                        clear(player);
-                        player.sendMessage(getManager().getEntry("clearchat.cleaned").replace("{name}", execution.getSender().getName()));
-                        return;
-                    }
-                    if (player.equals(execution.getPlayer())) {
-                        player.sendMessage(getManager().getEntry("clearchat.success"));
-                        return;
-                    }
-                    player.sendMessage(getManager().getEntry("clearchat.try-clear").replace("{name}", execution.getSender().getName()));
-                });
-            }
+            Bukkit.getOnlinePlayers().forEach(player -> {
+                if (!player.hasPermission("engine.commands.clearchat.bypass")) {
+                    clear(player);
+                    player.sendMessage(getManager().getEntry("clearchat.cleaned", execution));
+                    return;
+                }
+                if (execution.isPlayer() && player.equals(execution.getPlayer())) {
+                    execution.sendMessage(getManager().getEntry("clearchat.success"));
+                    return;
+                }
+                player.sendMessage(getManager().getEntry("clearchat.try-clear", execution));
+            });
         }
+        if (execution.argsCount() == 1) {
+            String nickname = execution.getArg(0);
+            Player player = Bukkit.getPlayer(nickname);
+            if (player == null || !player.isOnline()) {
+                execution.sendMessage(getManager().getEntry("clearchat.offline"));
+                return;
+            }
+            if (!player.hasPermission("engine.commands.clearchat.bypass")) {
+                clear(player);
+                player.sendMessage(getManager().getEntry("clearchat.cleaned", execution));
+                return;
+            }
+            player.sendMessage(getManager().getEntry("clearchat.try-clear", execution));
+        }
+    }
+    @me.saiintbrisson.minecraft.command.annotations.Command(
+            name = "clearchat.self",
+            target = CommandTarget.PLAYER
+    )
+    public void executeSelf(Execution execution){
+        clear(execution.getPlayer());
+        execution.sendMessage(getManager().getEntry("clearchat.success"));
     }
 
     public void clear(Player player) {

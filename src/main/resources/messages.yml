@@ -13,3 +13,4 @@ clearchat:
   success: "&aVocê limpou com sucesso o bate-papo!"
   cleaned: "&ao bate-papo foi limpo pelo {name}!"
   try-clear: "&cO {name} tentou limpar seu bate-papo."
+  offline: "&cEste jogador não foi encontrado =c"
