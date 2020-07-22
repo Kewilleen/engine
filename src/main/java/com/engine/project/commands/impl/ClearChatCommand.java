@@ -22,8 +22,7 @@ public class ClearChatCommand extends Command {
     @me.saiintbrisson.minecraft.command.annotations.Command(
             name = "clearchat",
             aliases = {"chatclear", "cc", "limparchat"},
-            permission = "engine.commands.clearchat",
-            target = CommandTarget.BOTH
+            permission = "engine.commands.clearchat"
     )
     public void command(Execution execution) {
         if (execution.argsCount() == 0) {
@@ -65,6 +64,7 @@ public class ClearChatCommand extends Command {
     }
 
     public void clear(Player player) {
-        player.sendMessage(StringUtils.repeat("", 100));
+        for (int index = 0; index < 100; index++) 
+            player.sendMessage("");
     }
 }
