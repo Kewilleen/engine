@@ -8,3 +8,8 @@ general:
 alert:
   title: "&c&lMyServer"
   subtitle-prefix: "・"
+
+clearchat:
+  success: "&aVocê limpou com sucesso o bate-papo!"
+  cleaned: "&ao bate-papo foi limpo pelo {name}!"
+  try-clear: "&cO {name} tentou limpar seu bate-papo."

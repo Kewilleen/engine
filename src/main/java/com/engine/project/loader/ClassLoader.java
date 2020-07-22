@@ -1,6 +1,7 @@
 package com.engine.project.loader;
 
 import com.engine.project.commands.impl.AlertCommand;
+import com.engine.project.commands.impl.ClearChatCommand;
 import com.engine.project.commands.impl.EnderChestCommand;
 import com.engine.project.configuration.impl.MessageManager;
 import me.saiintbrisson.minecraft.command.CommandFrame;
@@ -23,10 +24,12 @@ public class ClassLoader {
 
         frame.setLackPermMessage(manager.getEntry("general.no-permission"));
         frame.setIncorrectTargetMessage(manager.getEntry("general.wrong-sender"));
+        //frame.setDefaultPermission("engine.commands.*");
 
         frame.register(
                 new AlertCommand(manager),
-                new EnderChestCommand(manager)
+                new EnderChestCommand(manager),
+                new ClearChatCommand(manager)
         );
     }
 

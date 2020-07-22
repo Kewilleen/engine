@@ -13,4 +13,6 @@ public class Command {
     public MessageManager getManager() {
         return manager;
     }
+
+
 }

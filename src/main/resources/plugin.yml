@@ -1,3 +1,6 @@
 name: "Engine"
 version: "1.0.0"
 main: "com.engine.project.Engine"
+authors: [eikefs, xGabrielDEV, Kewilleen]
+website: https://github.com/enginemc/engine
+description: A simple System alternative
